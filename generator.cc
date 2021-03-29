@@ -31,4 +31,6 @@ int main(int argc, char **argv) {
         int v = (rng() % ai_upper_limit) + 1;
         fprintf(file, "%d %d\n", x, v);
     }
+
+    fclose(file);
 }
