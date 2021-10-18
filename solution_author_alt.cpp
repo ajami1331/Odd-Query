@@ -48,7 +48,7 @@ int main() {
         ar[x] = v;
         eventCount += !(ar[x] & 1);
         oddCount += (ar[x] & 1);
-        ans = ((oddCount > 0 ? (pw[oddCount - 1] + mod) % mod : 0ll) * pw[eventCount]) % mod;
+        ans = (oddCount > 0) * pw[n - 1];
         printf("%lld\n", ans);
     }
 }

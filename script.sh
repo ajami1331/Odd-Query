@@ -3,18 +3,18 @@
 rm -r testcase
 rm testcase.zip
 mkdir testcase
- g++ generator.cc -o gen.exe
+ g++ generator_odd_heavy.cc -o gen.exe
 echo generator compiled
 echo n, q, ai_upper_limit, filename, seed
 echo sample
-./gen.exe 3 3 5 ./testcase/1.in 123
-./gen.exe 5 3 5 ./testcase/2.in 1234
-./gen.exe 5 3 5 ./testcase/3.in 1235
+./gen.exe 3 1 5 ./testcase/1.in 12
+./gen.exe 1 1 5 ./testcase/2.in 23
+./gen.exe 5 5 5 ./testcase/3.in 45854457
 echo sample input generated
 echo small
-./gen.exe 50 10 50 ./testcase/4.in 234
-./gen.exe 100 50 100 ./testcase/5.in 12354
-./gen.exe 500 100 500 ./testcase/6.in 324
+./gen.exe 10 10 50 ./testcase/4.in 234
+./gen.exe 15 15 100 ./testcase/5.in 12354
+./gen.exe 20 20 500 ./testcase/6.in 324
 echo small input generated
 echo medium
 ./gen.exe 1000 500 5000 ./testcase/7.in 25534
@@ -34,5 +34,5 @@ do
     ./sol.exe < $input > $output
 done
 echo output generated
-zip testcase.zip ./testcase/*
+zip -r -j testcase.zip ./testcase/*
 echo testcase zipped

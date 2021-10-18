@@ -4,7 +4,6 @@ using ll = long long;
 const int mod = 1e9 + 7;
 const int sz = 1e5 + 10;
 
-ll pw[sz];
 int ar[sz];
 int n, q;
 int x, v;
@@ -22,33 +21,32 @@ const int v_lim_high = 1e9;
 // Limits
 
 int main() {
-    pw[0] = 1ll;
-    for (int i = 1; i < sz; i++) {
-        pw[i] = (pw[i - 1] * 2ll) % mod;
-    }
     int n, q;
     scanf("%d %d", &n, &q);
     assert(n_lim_low <= n && n <= n_lim_high && "n not within limit");
     assert(q_lim_low <= q && q <= q_lim_high && "q not within limit");
-    eventCount = 0;
-    oddCount = 0;
     for (int i = 1; i <= n; i++) {
         scanf("%d", &ar[i]);
         assert(ai_lim_low <= ar[i] && ar[i] <= ai_lim_high && "ai not within limit");
-        eventCount += !(ar[i] & 1);
-        oddCount += (ar[i] & 1);
     }
     ll ans = 0;
     while (q--) {
         scanf("%d %d", &x, &v);
         assert(n_lim_low <= x && x <= n && "x not within limit");
         assert(v_lim_low <= v && v <= v_lim_high && "v not within limit");
-        eventCount -= !(ar[x] & 1);
-        oddCount -= (ar[x] & 1);
         ar[x] = v;
-        eventCount += !(ar[x] & 1);
-        oddCount += (ar[x] & 1);
-        ans = ((oddCount > 0 ? (pw[oddCount - 1] + mod) % mod : 0ll) * pw[eventCount]) % mod;
-        printf("%lld\n", ans);
+        ll odd = 0;
+        ll even = 0;
+        for (int mask = 0; mask < (1 << n); mask++) {
+            ll h = 0;
+            for (int i = 0; i < n; i++) {
+                if (mask & (1 << i)) {
+                    h += (ar[i + 1]  & 1);
+                }
+            }
+            odd = (odd + (h & 1)) % mod;
+            even = (even + !(h & 1)) % mod;
+        }
+        printf("%lld\n", odd);
     }
 }

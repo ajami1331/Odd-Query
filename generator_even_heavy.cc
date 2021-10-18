@@ -2,6 +2,9 @@
 #include <cassert>
 #include <cmath>
 #include <random>
+#include <vector>
+#include <set>
+#include <algorithm>
 using ll = long long;
 
 // n, q, ai_upper_limit, filename, seed
@@ -20,22 +23,32 @@ int main(int argc, char **argv) {
 
     fprintf(file, "%d %d\n", n, q);
 
-    int* ar = new int[n + 1];
+    std::vector <int> ar(n + 1);
+    std::vector <int> index;
 
-    for (int i = 1; i <= n; i++) {
+    for (int i = 1; i <= n; i++) { 
         ar[i] = (rng() % ai_upper_limit) + 1;
-        fprintf(file, "%d", ar[i]);
-        fprintf(file, i < n ? " " : "\n");
+        while (ar[i] % 2 != 0) ar[i] = (rng() % ai_upper_limit) + 1;
     }
 
+    std::shuffle(ar.begin() + 1, ar.end(), rng);
+
+    for (int i = 1; i <= n; i++) {
+        fprintf(file, "%d", ar[i]);
+        fprintf(file, i < n ? " " : "\n");
+        index.push_back(i);
+    }
+
+    std::shuffle(index.begin(), index.end(), rng);
+
     for (int i = 1; i <= q; i++) {
-        int x = (rng() % n) + 1;
+        int x = index.back();
+        index.pop_back();
         int v = (rng() % ai_upper_limit) + 1;
         while (((v ^ ar[x]) & 1) == 0) v = (rng() % ai_upper_limit) + 1;
         ar[x] = v;
         fprintf(file, "%d %d\n", x, v);
     }
 
-    delete[] ar;
     fclose(file);
 }
