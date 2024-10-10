@@ -1,0 +1,69 @@
+{
+    "TimeLimit": 1000,
+    "MemoryLimit": 262144,
+    "ValidatorType": 2,
+    "Samples": [0, 1, 2],
+    "TestCases": [
+        {
+            "Input": "1.in",
+            "Output": "1.out",
+            "Score": 0
+        },
+        {
+            "Input": "2.in",
+            "Output": "2.out",
+            "Score": 0
+        },
+        {
+            "Input": "3.in",
+            "Output": "3.out",
+            "Score": 0
+        },
+        {
+            "Input": "4.in",
+            "Output": "4.out",
+            "Score": 10
+        },
+        {
+            "Input": "5.in",
+            "Output": "5.out",
+            "Score": 10
+        },
+        {
+            "Input": "6.in",
+            "Output": "6.out",
+            "Score": 10
+        },
+        {
+            "Input": "7.in",
+            "Output": "7.out",
+            "Score": 10
+        },
+        {
+            "Input": "8.in",
+            "Output": "8.out",
+            "Score": 10
+        },
+        {
+            "Input": "9.in",
+            "Output": "9.out",
+            "Score": 10
+        },
+        {
+            "Input": "10.in",
+            "Output": "10.out",
+            "Score": 10
+        },
+        {
+            "Input": "11.in",
+            "Output": "11.out",
+            "Score": 10
+        },
+        {
+            "Input": "12.in",
+            "Output": "12.out",
+            "Score": 20
+        }
+
+    ]
+}

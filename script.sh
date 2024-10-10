@@ -1,7 +1,7 @@
 #!/bin/bash
 #
-rm -r testcase
-rm testcase.zip
+rm -rf testcase
+rm -f testcase.zip
 mkdir testcase
  g++ generator_odd_heavy.cc -o gen.exe
 echo generator compiled
@@ -34,5 +34,17 @@ do
     ./sol.exe < $input > $output
 done
 echo output generated
-zip -r -j testcase.zip ./testcase/*
+
+rm -rf ./Input/
+rm -rf ./Output/
+
+mkdir -p ./Input/
+mkdir -p ./Output/
+
+cp ./testcase/*.in ./Input/
+cp ./testcase/*.out ./Output/
+
+cp Config.json ./
+
+zip -r testcase.zip ./Config.json ./Input ./Output
 echo testcase zipped
